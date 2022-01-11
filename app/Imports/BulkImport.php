@@ -15,6 +15,11 @@ class BulkImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
+
+        $setRequired = 1;
+        if($row['prescription'] == 'N'){
+            $setRequired = 0;
+        }
         // print_r($row);
         return new Drug([
             'trade_name' => $row['name'],
@@ -23,6 +28,7 @@ class BulkImport implements ToModel, WithHeadingRow
             'type_sell' => $row['type_of_sell'],
             'manufacturer' => $row['manufacturer'],
             'country_origin' => $row['country_of_origin'],
+            'rx_required' => $setRequired,
             'salt' => $row['salt'],
             'rate' => $row['mrp_inclusive_of_all_taxes'],
             'uses' => $row['uses_of_medicine_name'],

@@ -96,7 +96,7 @@ class PrescriptionController extends Controller{
     }
 
     public function all(){
-    	$prescriptions = Prescription::all();
+    	$prescriptions = Prescription::all()->sortByDesc('created_at');
     	return view('prescription.all',['prescriptions' => $prescriptions]);
     }
 
